@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main(void){
-    int qtd_frutas, linha, tamanho_string;
+    int qtd_frutas, linha;
     
     printf("Digite a quantidade de frutas: \n");
     scanf("%d", &qtd_frutas); 
@@ -32,8 +32,7 @@ int main(void){
         scanf(" %[^\n]s", frutas[linha]);
         printf("digite o preco da fruta: ");
         scanf("%f", &prec_frutas[linha]);
-        realloc(frutas[linha],strlen(frutas[linha]));
-
+        realloc(frutas[linha], strlen(frutas[linha]));
     } 
     
     printf("Lista de frutas \n");
@@ -48,6 +47,6 @@ int main(void){
 
     free(frutas);
     free(prec_frutas);
-//teste
+
     return 0;
 }
