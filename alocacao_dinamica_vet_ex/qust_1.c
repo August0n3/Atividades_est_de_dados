@@ -3,10 +3,11 @@
 
 int main(void){
     //variaveis de auxilio
-    int i,opiniao;
+    int i,opiniao, num_mulheres=0,num_homens=0;
+    float percentual1=0,percetual2=0;
     char sexo;
     //numero N de entrevistados
-    int num_entrevistados = 2; //exemplo
+    int num_entrevistados = 5; //exemplo
 
     //declarando vetores dinamicamente    
     int * sex = (int*) malloc(num_entrevistados*sizeof(int)); //0 = Masculino /1 = Feminino
@@ -28,7 +29,8 @@ int main(void){
         //Solicitando o sexo dos entrevistados
         printf("Oi, entrevistado numero %i, poderia indicar seu sexo\n",i+1);
         printf("M = Masculino\nF = Feminino\n");
-        scanf("%c", &sexo);
+        scanf(" %[^\n]", &sexo);
+        sexo = toupper(sexo);
 
         //checando se foi definida uma opcao valida
         if( (sexo!='M') && (sexo != 'F')){
@@ -89,8 +91,36 @@ int main(void){
             break;
         }
 
-
     }
+
+    
+    for ( i = 0; i < num_entrevistados; i++){
+        //calcular percentuais
+        if (sex==0){
+            num_mulheres++;
+        }
+        
+        if (sex==1){
+            num_mulheres++;
+        }
+        
+        if ((opiniao_entrevistados[i]==0)&&(sex==1)){
+            percentual1++;
+        }
+        if ((opiniao_entrevistados[i]==1)&&(sex==0)){
+            percetual2++;
+        }
+    }
+    
+
+
+    percentual1 = (percentual1*num_mulheres)/100;
+    percetual2 =  (percetual2*num_homens)/100;
+
+
+    printf("%i %i", percentual1, percetual2);
+
+
     
     free(sex);
     free(opiniao_entrevistados);
