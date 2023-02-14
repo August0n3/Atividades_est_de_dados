@@ -3,11 +3,14 @@
 
 int main(void){
     //variaveis de auxilio
-    int i,opiniao, num_mulheres=0,num_homens=0;
-    float percentual1=0,percetual2=0;
+    int i,opiniao;
+    int num_mulheres=0;
+    int num_homens=0;
+    float percentual1=0;
+    float percetual2=0;
     char sexo;
     //numero N de entrevistados
-    int num_entrevistados = 5; //exemplo
+    int num_entrevistados = 1; //exemplo
 
     //declarando vetores dinamicamente    
     int * sex = (int*) malloc(num_entrevistados*sizeof(int)); //0 = Masculino /1 = Feminino
@@ -39,7 +42,7 @@ int main(void){
         }else{
              //caso fosse uma opção valida vamos perguntar a sua opiniao
             printf("Qual sua opiniao sobre o nosso produto\n Digite 0 se gostou \n Digite 1 se nao gostou\n");
-            scanf("%d", &opiniao);
+            scanf("%i", &opiniao);
             
             if((opiniao!= 0) && (opiniao!=1)){
                 printf("Opcao invalida!\n");
@@ -96,31 +99,29 @@ int main(void){
     
     for ( i = 0; i < num_entrevistados; i++){
         //calcular percentuais
-        if (sex==0){
-            num_mulheres++;
+        if (sex[i]==0){
+            num_homens+=1;
+        }
+        if (sex[i]==1){
+            num_mulheres+=1;
         }
         
-        if (sex==1){
-            num_mulheres++;
+        if ((opiniao_entrevistados[i]==0)&&(sex[i]==1)){
+            percentual1+=1;
         }
-        
-        if ((opiniao_entrevistados[i]==0)&&(sex==1)){
-            percentual1++;
-        }
-        if ((opiniao_entrevistados[i]==1)&&(sex==0)){
-            percetual2++;
+        if ((opiniao_entrevistados[i]==1)&&(sex[i]==0)){
+            percetual2+=1;
         }
     }
     
 
+    //fazendo o calculo dos pecentuais
+    percentual1 = (percentual1*100)/num_mulheres;
+    percetual2 =  (percetual2*100)/num_homens;
 
-    percentual1 = (percentual1*num_mulheres)/100;
-    percetual2 =  (percetual2*num_homens)/100;
-
-
-    printf("%i %i", percentual1, percetual2);
-
-
+    //exibindo os percentuais
+    printf("%f %f", percentual1, percetual2);
+    
     
     free(sex);
     free(opiniao_entrevistados);
