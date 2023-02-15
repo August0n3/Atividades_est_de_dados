@@ -7,7 +7,7 @@ int main(void){
     int num_mulheres=0;
     int num_homens=0;
     float percentual1=0;
-    float percetual2=0;
+    float percentual2=0;
     char sexo;
     //numero N de entrevistados
     int num_entrevistados = 1; //exemplo
@@ -110,18 +110,17 @@ int main(void){
             percentual1+=1;
         }
         if ((opiniao_entrevistados[i]==1)&&(sex[i]==0)){
-            percetual2+=1;
+            percentual2+=1;
         }
     }
     
 
     //fazendo o calculo dos pecentuais
-    percentual1 = (percentual1*100)/num_mulheres;
-    percetual2 =  (percetual2*100)/num_homens;
+    percentual1 = num_mulheres!=0 ? (percentual1*100)/num_mulheres : 0;
+    percentual2 = num_homens!=0 ? (percentual2*100)/num_homens : 0;
 
     //exibindo os percentuais
-    printf("%f %f", percentual1, percetual2);
-    
+    printf("Mulheres que gostaram em percentual: %.1f%%\nHomens que nao gostaram em percentual: %.1f%%", percentual1, percentual2);
     
     free(sex);
     free(opiniao_entrevistados);
